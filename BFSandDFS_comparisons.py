@@ -22,11 +22,11 @@ def gen_graph():
 	global adj, adjacent
 	adj = {}
 	adjacent = {}
-        
+        #create adjacency lists
 	for i in range(num_of_nodes):
 		adj[i] = []
 		adjacent[i] = []
-	#generate M random pairs of cities to connect. Beware of double-edges.
+	#generate random pairs of cities to connect. Beware of double-edges.
 	for i in range(num_of_connections):
 		#x and y are both random cities that will be connected by a road
 		x = randint(0,num_of_nodes-1)
@@ -42,7 +42,6 @@ def gen_graph():
 		adjacent[i] = list(set(adjacent[i]) - set([i]))
 
 
-#finds all possible cities reachable from a certain starting node
 def dfs(node):
         #Mark node as visited, visit all not visited neighbors
 	dfs_visited[node] = 1
@@ -76,15 +75,14 @@ runs = 200
 
 #200 Nodes per graph and number of connections increase
 for num_of_connections in range(0,2001):
-	#N is the number of citites
         num_of_nodes = 200
 	#Adjacency array is a python dictionary
 	#adj[i] has all neighbors of vertex i
         adj = {}
         adjacent = {}
-        #how many times to generate and run dfs/bfs on randomly generated graphs
+        #how many times to generate and run dfs/bfs on randomly generated graphs, 200
         for i in range(runs):
-                #generate a random graph with M connections and N nodes
+                #generate graph
                 gen_graph()
                 #dfs in blue
                 dfs_visited = [0 for i in range(num_of_nodes)]
